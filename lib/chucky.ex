@@ -1,18 +1,14 @@
 defmodule Chucky do
-  @moduledoc """
-  Documentation for Chucky.
-  """
+  @moduledoc false
 
-  @doc """
-  Hello world.
+  use Application
+  require Logger
 
-  ## Examples
-
-      iex> Chucky.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def start(type, _args) do
+    import Supervisor.Spec
+    children = [
+      worker(Chucky.Server, [])
+    ]
   end
+
 end
